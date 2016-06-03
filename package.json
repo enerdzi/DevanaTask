@@ -1,0 +1,17 @@
+{
+  "name": "nautalius",
+  "version": "1.0.0",
+  "description": "Devana Labs Task",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Natalija Radic",
+  "license": "ISC",
+  "dependencies": {
+    "bower": "^1.7.9",
+    "gulp": "^3.9.1",
+    "gulp-inject": "^4.1.0",
+    "gulp-livereload": "^3.8.1"
+  }
+}
