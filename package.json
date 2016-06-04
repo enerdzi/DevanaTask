@@ -11,7 +11,9 @@
   "dependencies": {
     "bower": "^1.7.9",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
     "gulp-inject": "^4.1.0",
-    "gulp-livereload": "^3.8.1"
+    "gulp-livereload": "^3.8.1",
+    "main-bower-files": "^2.13.1"
   }
 }
