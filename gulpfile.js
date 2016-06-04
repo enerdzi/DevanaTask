@@ -5,11 +5,11 @@ var gulp = require('gulp'),
 
 var paths = {
     srcJs: 'app/**/*.js',
-    destJs: 'dist/js',
+    destJs: 'dist/',
     srcHtml: ['app/**/*.html', '!app/index.html'],
-    destHtml: 'dist/html',
+    destHtml: 'dist/',
     srcCss: 'app/**/*.css',
-    destCss: 'dist/css',
+    destCss: 'dist/',
     srcIndex: 'app/index.html',
     destIndex: 'dist'
 };
