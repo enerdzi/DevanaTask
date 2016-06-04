@@ -14,9 +14,13 @@ var paths = {
     destIndex: 'dist'
 };
 
-gulp.task('default', ['build-index']);
+gulp.task('default', ['clean'], function () {
+    return gulp.start('build');
+});
 
-gulp.task('build-js', ['clean'], function () {
+gulp.task('build', ['build-index']);
+
+gulp.task('build-js', function () {
     return gulp.src(paths.srcJs)
         .pipe(gulp.dest(paths.destJs));
 });

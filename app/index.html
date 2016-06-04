@@ -2,40 +2,40 @@
 <html>
 <head>
     <title>Nautalius</title>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <!-- bower:css -->
     <!-- endinject -->
     <!-- inject:css -->
     <!-- endinject -->
 </head>
 <body>
-
-<div layout="column" ng-cloak="" class="sidenavdemoBasicUsage" ng-app="Nautalius">
-
+<div layout="column" ng-cloak="" ng-app="Nautalius" ng-controller="AppCtrl">
     <section layout="row" flex="">
-        <ntls-sidebar></ntls-sidebar>
-        <md-content flex="" layout-padding="">
 
-            <div layout="column" layout-fill="" layout-align="top center">
-                <p>
-                    The left sidenav will 'lock open' on a medium (>=960px wide) device.
-                </p>
-                <p>
-                    The right sidenav will focus on a specific child element.
-                </p>
+        <md-sidenav style="height: 100vh" class="md-sidenav-left" md-component-id="left"
+                    md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop="" md-whiteframe="4">
+            <md-toolbar>
+                <h1 class="md-toolbar-tools">Nautalius</h1>
+            </md-toolbar>
+            <md-content>
+                <!--<ntls-tree-view></ntls-tree-view>-->
+            </md-content>
+        </md-sidenav>
 
-                <div>
-                    <md-button ng-click="toggleLeft()" class="md-primary" hide-gt-md="">
-                        Toggle left
+        <md-content flex="">
+            <md-toolbar>
+                <div class="md-toolbar-tools">
+                    <md-button class="md-icon-button" aria-label="Settings" ng-click="toggleSidebar()" hide-gt-sm="">
+                        <md-icon>menu</md-icon>
                     </md-button>
+                    <h2>
+                        <span>Path</span>
+                    </h2>
                 </div>
-
-            </div>
-
-            <div flex=""></div>
+            </md-toolbar>
         </md-content>
     </section>
 </div>
-
 <!-- bower:js -->
 <!-- endinject -->
 <!-- inject:js -->
