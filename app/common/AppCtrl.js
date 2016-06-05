@@ -1,5 +1,5 @@
 angular.module('Nautalius')
-    .controller('AppCtrl', ['$scope', '$mdSidenav', function ($scope, $mdSidenav) {
+    .controller('AppCtrl', ['$scope', '$mdSidenav', 'EntryService', 'EntryModel', function ($scope, $mdSidenav, EntryService, EntryModel) {
         $scope.openNewFileModal = function () {
 
         };
@@ -7,7 +7,6 @@ angular.module('Nautalius')
 
         };
         $scope.toggleSidebar = function () {
-            $mdSidenav('left')
-                .toggle()
+            $mdSidenav('left').toggle();
         };
     }]);
