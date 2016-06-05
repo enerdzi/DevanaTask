@@ -5,10 +5,16 @@ angular.module('Nautalius')
             replace: true,
             restrict: 'E',
             scope: {
-                entry: '='
+                entry: '=',
+                view: '='
             },
             link: function (scope) {
-                
+                scope.iconsMap = {
+                    html: 'language-html5',
+                    css: 'language-css3',
+                    js: 'nodejs',
+                    php: 'language-php'
+                };
             }
         };
     }]);

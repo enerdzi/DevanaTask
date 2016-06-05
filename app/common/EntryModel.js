@@ -1,5 +1,10 @@
 angular.module('Nautalius')
-    .constant('EXTENSIONS', ['html', 'css', 'js', 'php']);
+    .constant('EXTENSIONS', {
+        html: 'html',
+        css: 'css',
+        js: 'js',
+        php: 'php'
+    });
 
 angular.module('Nautalius')
     .factory('EntryModel', ['EXTENSIONS', function (EXTENSIONS) {
@@ -22,14 +27,18 @@ angular.module('Nautalius')
                 return self.entries && self.entries.length > 0;
             };
 
+            this.entryExists = function (name) {
+                return _.findIndex(self.entries, {name: name}) !== -1;
+            };
+
             this.getDirectories = function () {
-                return _.filter(self.entries, function (entry) {
+                return _.sortBy(_.filter(self.entries, function (entry) {
                     return entry.isDir;
-                });
+                }), ['name']);
             };
 
             this.getFiles = function () {
-                return _.differenceWith(self.entries, self.getDirectories(), _.isEqual);
+                return _.sortBy(_.differenceWith(self.entries, self.getDirectories(), _.isEqual), ['name']);
             };
 
             this.getParent = function () {
@@ -58,7 +67,7 @@ angular.module('Nautalius')
         }
 
         entryModel.make = function (data) {
-            if (!data.name) {
+            if (!data.name || !_.isString(data.name) || _.isEmpty(data.name)) {
                 return null;
             }
             if (!(data.parent instanceof Entry)) {
@@ -77,7 +86,7 @@ angular.module('Nautalius')
         entryModel.checkExtension = function (name) {
             var index = name.lastIndexOf('.');
             if (index !== -1) {
-                return _.indexOf(EXTENSIONS, name.substr(index + 1)) !== -1;
+                return _.indexOf(_.values(EXTENSIONS), name.substr(index + 1)) !== -1;
             }
             return false;
         };

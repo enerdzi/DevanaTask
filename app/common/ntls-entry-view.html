@@ -1,4 +1,6 @@
-<md-list-item ng-click="">
-    <md-icon>folder</md-icon>
+<md-list-item>
+    <md-icon ng-if="entry.isDir && view.isOpen">folder_open</md-icon>
+    <md-icon ng-if="entry.isDir && !view.isOpen">folder</md-icon>
+    <md-icon ng-if="!entry.isDir" md-svg-icon="{{ iconsMap[entry.getExtension()] }}"></md-icon>
     <p> {{ entry.name }} </p>
 </md-list-item>

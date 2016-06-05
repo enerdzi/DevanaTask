@@ -5,10 +5,17 @@ angular.module('Nautalius')
             replace: true,
             restrict: 'E',
             scope: {
-                rootEntry: '='
+                rootEntry: '=',
+                showFiles: '='
             },
             link: function (scope) {
-                console.log(scope.rootEntry);
+                scope.view = {
+                    isOpen: false,
+                    showFiles: scope.showFiles
+                };
+                scope.toggleOpen = function () {
+                    scope.view.isOpen = !scope.view.isOpen;
+                };
             }
         };
     }]);

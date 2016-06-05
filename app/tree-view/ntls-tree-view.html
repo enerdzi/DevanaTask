@@ -1,9 +1,9 @@
 <md-list class="md-dense" flex>
-    <ntls-entry-view entry="rootEntry"></ntls-entry-view>
-    <md-list-item ng-repeat="entry in rootEntry.getDirectories()">
-        <ntls-tree-view root-entry="entry"></ntls-tree-view>
+    <ntls-entry-view ng-click="toggleOpen()" entry="rootEntry" view="view"></ntls-entry-view>
+    <md-list-item ng-if="view.isOpen" ng-repeat="entry in rootEntry.getDirectories()">
+        <ntls-tree-view show-files="view.showFiles" root-entry="entry"></ntls-tree-view>
     </md-list-item>
-    <md-list-item ng-repeat="entry in rootEntry.getFiles()">
-        <ntls-tree-view root-entry="entry"></ntls-tree-view>
+    <md-list-item ng-if="view.showFiles && view.isOpen" ng-repeat="entry in rootEntry.getFiles()">
+        <ntls-tree-view show-files="view.showFiles" root-entry="entry"></ntls-tree-view>
     </md-list-item>
 </md-list>

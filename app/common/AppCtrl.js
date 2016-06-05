@@ -12,7 +12,7 @@ angular.module('Nautalius')
         $scope.rootEntry = EntryService.getRootEntry();
 
         EntryService.addEntry($scope.rootEntry, EntryModel.make({
-            name: 'Dir1',
+            name: 'Dir3',
             parent: $scope.rootEntry,
             isDir: true
         }));
@@ -22,10 +22,27 @@ angular.module('Nautalius')
             isDir: false
         }));
         EntryService.addEntry($scope.rootEntry, EntryModel.make({
+            name: 'File1.js',
+            parent: $scope.rootEntry,
+            isDir: false
+        }));
+        EntryService.addEntry($scope.rootEntry, EntryModel.make({
+            name: 'File1.css',
+            parent: $scope.rootEntry,
+            isDir: false
+        }));
+        EntryService.addEntry($scope.rootEntry, EntryModel.make({
+            name: 'File1.php',
+            parent: $scope.rootEntry,
+            isDir: false
+        }));
+        EntryService.addEntry($scope.rootEntry, EntryModel.make({
             name: 'Dir2',
             parent: $scope.rootEntry,
             isDir: true
         }));
 
-        console.log($scope.rootEntry);
+        console.log(EntryService.renameEntry($scope.rootEntry.getDirectories()[0], 'Nova1'));
+        console.log(EntryService.renameEntry($scope.rootEntry.getFiles()[0], 'Nova2'));
+        console.log(EntryService.renameEntry($scope.rootEntry.getFiles()[0], 'Nova3.php'));
     }]);

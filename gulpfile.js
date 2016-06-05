@@ -11,7 +11,9 @@ var paths = {
     srcCss: 'app/**/*.css',
     destCss: 'dist/',
     srcIndex: 'app/index.html',
-    destIndex: 'dist'
+    destIndex: 'dist',
+    srcAssets: 'app/assets/**/*.*',
+    destAssets: 'dist/assets/'
 };
 
 gulp.task('default', ['clean'], function () {
@@ -35,7 +37,12 @@ gulp.task('build-css', function () {
         .pipe(gulp.dest(paths.destCss));
 });
 
-gulp.task('build-index', ['build-js', 'build-html', 'build-css'], function () {
+gulp.task('build-assets', function () {
+    return gulp.src(paths.srcAssets)
+        .pipe(gulp.dest(paths.destAssets));
+});
+
+gulp.task('build-index', ['build-assets', 'build-js', 'build-html', 'build-css'], function () {
     return gulp.src(paths.srcIndex)
         .pipe(inject(gulp.src(bowerFiles(), {read: false}), {name: 'bower'}))
         .pipe(inject(gulp.src(paths.destJs + '/**/*.js', {read: false})))
