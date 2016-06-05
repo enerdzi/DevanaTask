@@ -1,0 +1,9 @@
+<md-list class="md-dense" flex>
+    <ntls-entry-view entry="rootEntry"></ntls-entry-view>
+    <md-list-item ng-repeat="entry in rootEntry.getDirectories()">
+        <ntls-tree-view root-entry="entry"></ntls-tree-view>
+    </md-list-item>
+    <md-list-item ng-repeat="entry in rootEntry.getFiles()">
+        <ntls-tree-view root-entry="entry"></ntls-tree-view>
+    </md-list-item>
+</md-list>
