@@ -6,43 +6,40 @@ angular.module('Nautalius')
         $scope.openNewDirectoryModal = function () {
 
         };
-        $scope.toggleSidebar = function () {
+        $scope.toggleSidebarLeft = function () {
             $mdSidenav('left').toggle();
+            $mdSidenav('right').close();
+        };
+        $scope.toggleSidebarRight = function () {
+            $mdSidenav('right').toggle();
+            $mdSidenav('left').close();
         };
         $scope.rootEntry = EntryService.getRootEntry();
 
-        EntryService.addEntry($scope.rootEntry, EntryModel.make({
-            name: 'Dir3',
-            parent: $scope.rootEntry,
-            isDir: true
-        }));
-        EntryService.addEntry($scope.rootEntry, EntryModel.make({
-            name: 'File1.html',
-            parent: $scope.rootEntry,
-            isDir: false
-        }));
-        EntryService.addEntry($scope.rootEntry, EntryModel.make({
-            name: 'File1.js',
-            parent: $scope.rootEntry,
-            isDir: false
-        }));
-        EntryService.addEntry($scope.rootEntry, EntryModel.make({
-            name: 'File1.css',
-            parent: $scope.rootEntry,
-            isDir: false
-        }));
-        EntryService.addEntry($scope.rootEntry, EntryModel.make({
-            name: 'File1.php',
-            parent: $scope.rootEntry,
-            isDir: false
-        }));
-        EntryService.addEntry($scope.rootEntry, EntryModel.make({
-            name: 'Dir2',
-            parent: $scope.rootEntry,
-            isDir: true
-        }));
+        function stressTest(root, level) {
+            for (var i = 0; i < 4 - level; i++) {
+                var newDir = EntryModel.make({
+                    name: root.name + '-' + i,
+                    isDir: true,
+                    parent: root
+                });
+                EntryService.addEntry(root, newDir);
+                stressTest(newDir, level + 1);
+            }
+            var file = EntryModel.make({
+                name: 'File #1.html',
+                isDir: false,
+                parent: root
+            });
+            var file2 = EntryModel.make({
+                name: 'File #2.js',
+                isDir: false,
+                parent: root
+            });
+            
+            EntryService.addEntry(root, file);
+            EntryService.addEntry(root, file2);
+        }
 
-        console.log(EntryService.renameEntry($scope.rootEntry.getDirectories()[0], 'Nova1'));
-        console.log(EntryService.renameEntry($scope.rootEntry.getFiles()[0], 'Nova2'));
-        console.log(EntryService.renameEntry($scope.rootEntry.getFiles()[0], 'Nova3.php'));
+        stressTest($scope.rootEntry, 0);
     }]);

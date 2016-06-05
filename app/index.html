@@ -25,15 +25,42 @@
         <md-content flex>
             <md-toolbar>
                 <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button" ng-click="toggleSidebar()" hide-gt-sm>
+                    <md-button class="md-icon-button" ng-click="toggleSidebarLeft()" hide-gt-sm>
                         <md-icon>menu</md-icon>
                     </md-button>
                     <h2>
                         <span>Path</span>
                     </h2>
+                    <span flex=""></span>
+                    <md-button class="md-icon-button" ng-click="toggleSidebarRight()">
+                        <md-icon>create_new_folder</md-icon>
+                    </md-button>
+                    <md-button class="md-icon-button" ng-click="toggleSidebarRight()">
+                        <md-icon>note_add</md-icon>
+                    </md-button>
                 </div>
             </md-toolbar>
         </md-content>
+
+
+        <md-sidenav class="md-sidenav-right" md-component-id="right" md-whiteframe="4">
+
+            <md-toolbar>
+                <h1 class="md-toolbar-tools"></h1>
+            </md-toolbar>
+            <md-content>
+                <form>
+                    <md-input-container>
+                        <label for="testInput">Test input</label>
+                        <input type="text" id="testInput" ng-model="data" md-autofocus="">
+                    </md-input-container>
+                </form>
+                <md-button ng-click="toggleSidebarRight()" class="md-primary">
+                    Close Sidenav Rightx
+                </md-button>
+            </md-content>
+
+        </md-sidenav>
     </section>
 </div>
 <!-- bower:js -->

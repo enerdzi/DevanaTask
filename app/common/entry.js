@@ -10,7 +10,7 @@ angular.module('Nautalius')
         };
 
         service.addEntry = function (parent, entry) {
-            if (parent instanceof EntryModel.Entry) {
+            if (parent instanceof EntryModel.Entry && !parent.entryExists(entry.name)) {
                 return parent.addEntry(entry);
             }
             return false;
@@ -20,6 +20,16 @@ angular.module('Nautalius')
             if (entry.getParent()) {
                 entry.getParent().removeEntry(entry);
             }
+        };
+
+        service.renameEntry = function (entry, name) {
+            if (!entry.isDir && !EntryModel.checkExtension(name)) {
+                return false;
+            }
+            var newEntry = entry;
+            service.deleteEntry(entry);
+            newEntry.rename(name);
+            return service.addEntry(newEntry.getParent(), newEntry);
         };
 
         return service;
