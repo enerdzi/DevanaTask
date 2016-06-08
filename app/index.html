@@ -12,55 +12,58 @@
 <div layout="column" ng-cloak ng-app="Nautalius" ng-controller="AppCtrl">
     <section layout="row" flex>
 
-        <md-sidenav style="height: 100vh" class="md-sidenav-left" md-component-id="left"
+        <md-sidenav class="md-sidenav-left" md-component-id="left"
                     md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop md-whiteframe="2">
             <md-toolbar>
                 <h1 class="md-toolbar-tools">Nautalius</h1>
             </md-toolbar>
-            <md-content>
-                <ntls-tree-view show-files="true" root-entry="rootEntry"></ntls-tree-view>
+            <md-content layout="column" layout-padding="">
+                <md-checkbox ng-model="showFiles">
+                    Show files
+                </md-checkbox>
+                <div ng-show="isInAddingMode">
+                    <form name="entryForm" ng-submit="addNewEntry()">
+                        <md-input-container>
+                            <label>Entry name</label>
+                            <input name="entryName" ng-model="newEntry.name" required>
+                        </md-input-container>
+                        <md-input-container>
+                            <label>Parent directory</label>
+                            <input ng-disabled="true" ng-model="newEntry.parent.name">
+                        </md-input-container>
+                        <md-button class="" ng-click="cancelAddingEntry()">Cancel</md-button>
+                        <md-button class="md-primary md-raised" type="submit">Add</md-button>
+                    </form>
+                </div>
+                <ntls-tree-view show-files="showFiles" root-entry="rootEntry"></ntls-tree-view>
             </md-content>
         </md-sidenav>
 
-        <md-content flex>
+        <md-content class="main-content" flex>
             <md-toolbar>
                 <div class="md-toolbar-tools">
                     <md-button class="md-icon-button" ng-click="toggleSidebarLeft()" hide-gt-sm>
                         <md-icon>menu</md-icon>
                     </md-button>
                     <h2>
-                        <span>Path</span>
+                        <span>{{showingDir.name}}</span>
                     </h2>
                     <span flex=""></span>
-                    <md-button class="md-icon-button" ng-click="toggleSidebarRight()">
+                    <md-button class="md-icon-button" ng-click="showAddDirectoryForm()">
                         <md-icon>create_new_folder</md-icon>
                     </md-button>
-                    <md-button class="md-icon-button" ng-click="toggleSidebarRight()">
+                    <md-button class="md-icon-button" ng-click="showAddFileForm()">
                         <md-icon>note_add</md-icon>
                     </md-button>
                 </div>
             </md-toolbar>
+            <md-content class="overflowed">
+                <!--<ntls-content-view layout="column" layout-padding="" root-entry="showingDir"></ntls-content-view>-->
+                <ntls-tree-view layout="column" layout-padding="" show-files="true"
+                                root-entry="showingDir"></ntls-tree-view>
+            </md-content>
         </md-content>
 
-
-        <md-sidenav class="md-sidenav-right" md-component-id="right" md-whiteframe="4">
-
-            <md-toolbar>
-                <h1 class="md-toolbar-tools"></h1>
-            </md-toolbar>
-            <md-content>
-                <form>
-                    <md-input-container>
-                        <label for="testInput">Test input</label>
-                        <input type="text" id="testInput" ng-model="data" md-autofocus="">
-                    </md-input-container>
-                </form>
-                <md-button ng-click="toggleSidebarRight()" class="md-primary">
-                    Close Sidenav Rightx
-                </md-button>
-            </md-content>
-
-        </md-sidenav>
     </section>
 </div>
 <!-- bower:js -->

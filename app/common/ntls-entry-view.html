@@ -1,6 +1,13 @@
-<md-list-item>
-    <md-icon ng-if="entry.isDir && view.isOpen">folder_open</md-icon>
-    <md-icon ng-if="entry.isDir && !view.isOpen">folder</md-icon>
-    <md-icon ng-if="!entry.isDir" md-svg-icon="{{ iconsMap[entry.getExtension()] }}"></md-icon>
-    <p> {{ entry.name }} </p>
+<md-list-item class="custom-list-item">
+    <!-- Make Directive out of these icons -->
+    <md-icon class="md-avatar-icon icon-smaller-margin" ng-if="entry.isDir && view.isOpen">folder_open</md-icon>
+    <md-icon class="md-avatar-icon icon-smaller-margin" ng-if="entry.isDir && !view.isOpen">folder</md-icon>
+    <md-icon class="md-avatar-icon icon-smaller-margin" ng-if="!entry.isDir"
+             md-svg-icon="{{ iconsMap[entry.getExtension()] }}"></md-icon>
+    <p>{{ entry.name }} </p>
+
+    <div class="md-secondary-container" ng-if="!isEntryRoot()">
+        <md-icon ng-click="showRenamePrompt($event)">mode_edit</md-icon>
+        <md-icon ng-click="showDeleteConfirm($event)">delete</md-icon>
+    </div>
 </md-list-item>

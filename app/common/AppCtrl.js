@@ -1,45 +1,63 @@
 angular.module('Nautalius')
-    .controller('AppCtrl', ['$scope', '$mdSidenav', 'EntryService', 'EntryModel', function ($scope, $mdSidenav, EntryService, EntryModel) {
-        $scope.openNewFileModal = function () {
+    .controller('AppCtrl', ['$scope', '$mdSidenav', 'EntryService', 'EntryModel', 'Events', 'StressTest',
+        function ($scope, $mdSidenav, EntryService, EntryModel, Events, StressTest) {
+            $scope.showFiles = true;
+            $scope.showingDir = EntryService.getRootEntry();
+            $scope.rootEntry = EntryService.getRootEntry();
 
-        };
-        $scope.openNewDirectoryModal = function () {
+            $scope.toggleSidebarLeft = function () {
+                $mdSidenav('left').toggle();
+            };
 
-        };
-        $scope.toggleSidebarLeft = function () {
-            $mdSidenav('left').toggle();
-            $mdSidenav('right').close();
-        };
-        $scope.toggleSidebarRight = function () {
-            $mdSidenav('right').toggle();
-            $mdSidenav('left').close();
-        };
-        $scope.rootEntry = EntryService.getRootEntry();
+            $scope.showAddDirectoryForm = function () {
+                switchToAddingMode(true);
+            };
 
-        function stressTest(root, level) {
-            for (var i = 0; i < 4 - level; i++) {
-                var newDir = EntryModel.make({
-                    name: root.name + '-' + i,
-                    isDir: true,
-                    parent: root
-                });
-                EntryService.addEntry(root, newDir);
-                stressTest(newDir, level + 1);
+            $scope.showAddFileForm = function () {
+                switchToAddingMode(false);
+            };
+
+            $scope.addNewEntry = function () {
+                if (EntryService.addEntry($scope.newEntry.parent, EntryModel.make($scope.newEntry))) {
+                    $scope.isInAddingMode = false;
+                }
+            };
+
+            $scope.cancelAddingEntry = function () {
+                $scope.isInAddingMode = false;
+            };
+
+            $scope.$on(Events.ACTIVE_DIR_CHANGE, function (e, newActiveDirectory) {
+                if ($scope.newEntry) {
+                    $scope.activeDir = newActiveDirectory;
+                    $scope.newEntry.parent = newActiveDirectory;
+                }
+            });
+
+            $scope.$on(Events.SHOWING_DIR_CHANGE, function (e, newShowingDirectory) {
+                $scope.showingDir = newShowingDirectory;
+            });
+
+            $scope.$on(Events.DIR_DELETED, function (e, deletedDirectory) {
+                if ($scope.activeDir && _.isEqual($scope.activeDir, deletedDirectory)) {
+                    $scope.activeDir = EntryService.getRootEntry();
+                    $scope.newEntry.parent = EntryService.getRootEntry();
+                }
+                if (_.isEqual($scope.showingDir, deletedDirectory)) {
+                    $scope.showingDir = EntryService.getRootEntry();
+                }
+            });
+
+            function switchToAddingMode(isDir) {
+                $scope.isInAddingMode = true;
+                $scope.activeDir = EntryService.getRootEntry();
+                $scope.toggleSidebarLeft();
+                $scope.newEntry = {
+                    name: '',
+                    isDir: isDir,
+                    parent: $scope.activeDir
+                };
             }
-            var file = EntryModel.make({
-                name: 'File #1.html',
-                isDir: false,
-                parent: root
-            });
-            var file2 = EntryModel.make({
-                name: 'File #2.js',
-                isDir: false,
-                parent: root
-            });
-            
-            EntryService.addEntry(root, file);
-            EntryService.addEntry(root, file2);
-        }
 
-        stressTest($scope.rootEntry, 0);
-    }]);
+            StressTest.generateData($scope.rootEntry);
+        }]);

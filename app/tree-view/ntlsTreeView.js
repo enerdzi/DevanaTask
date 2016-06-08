@@ -1,5 +1,5 @@
 angular.module('Nautalius')
-    .directive('ntlsTreeView', ['EntryModel', function (EntryModel) {
+    .directive('ntlsTreeView', ['Events', function (Events) {
         return {
             templateUrl: 'tree-view/ntls-tree-view.html',
             replace: true,
@@ -10,11 +10,20 @@ angular.module('Nautalius')
             },
             link: function (scope) {
                 scope.view = {
-                    isOpen: false,
-                    showFiles: scope.showFiles
+                    isOpen: false
                 };
+
                 scope.toggleOpen = function () {
                     scope.view.isOpen = !scope.view.isOpen;
+                    if (scope.rootEntry.isDir) {
+                        scope.$emit(Events.ACTIVE_DIR_CHANGE, scope.rootEntry);
+                    }
+                };
+
+                scope.showDir = function () {
+                    if (scope.rootEntry.isDir) {
+                        scope.$emit(Events.SHOWING_DIR_CHANGE, scope.rootEntry);
+                    }
                 };
             }
         };

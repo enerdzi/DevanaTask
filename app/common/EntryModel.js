@@ -15,16 +15,13 @@ angular.module('Nautalius')
             this.name = String(name);
             this.parent = parent;
             this.isDir = isDir;
+            
             if (this.isDir) {
                 this.entries = entries || [];
             }
 
             this.rename = function (name) {
                 self.name = name;
-            };
-
-            this.hasEntries = function () {
-                return self.entries && self.entries.length > 0;
             };
 
             this.entryExists = function (name) {
@@ -34,11 +31,15 @@ angular.module('Nautalius')
             this.getDirectories = function () {
                 return _.sortBy(_.filter(self.entries, function (entry) {
                     return entry.isDir;
-                }), ['name']);
+                }), function(o) {
+                    return _.toLower(o.name);
+                });
             };
 
             this.getFiles = function () {
-                return _.sortBy(_.differenceWith(self.entries, self.getDirectories(), _.isEqual), ['name']);
+                return _.sortBy(_.differenceWith(self.entries, self.getDirectories(), _.isEqual), function(o) {
+                    return _.toLower(o.name);
+                });
             };
 
             this.getParent = function () {

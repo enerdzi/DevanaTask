@@ -1,0 +1,40 @@
+.md-dense {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.list-item-no-right-padding {
+    padding-right: 0 !important;
+}
+.md-sidenav-left {
+    height: 100vh;
+    overflow: auto;
+}
+
+.main-content {
+    height: 100vh;
+    overflow: hidden;
+}
+
+.overflowed {
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.custom-list-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.active {
+    color: rgb(63, 81, 181);
+}
+
+.icon-smaller-margin {
+    margin-right: 16px !important;
+}
+
+.md-list-item-inner {
+    min-height: 24px;
+}
