@@ -19,12 +19,6 @@ angular.module('Nautalius')
                         scope.$emit(Events.ACTIVE_DIR_CHANGE, scope.rootEntry);
                     }
                 };
-
-                scope.showDir = function () {
-                    if (scope.rootEntry.isDir) {
-                        scope.$emit(Events.SHOWING_DIR_CHANGE, scope.rootEntry);
-                    }
-                };
             }
         };
     }]);

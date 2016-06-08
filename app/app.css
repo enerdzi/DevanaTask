@@ -12,13 +12,8 @@
 }
 
 .main-content {
-    height: 100vh;
-    overflow: hidden;
-}
-
-.overflowed {
-    overflow-y: auto;
-    height: 100vh;
+    width: 50%;
+    margin-left: 25%;
 }
 
 .custom-list-item {

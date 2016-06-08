@@ -11,16 +11,19 @@
 <body>
 <div layout="column" ng-cloak ng-app="Nautalius" ng-controller="AppCtrl">
     <section layout="row" flex>
-
-        <md-sidenav class="md-sidenav-left" md-component-id="left"
-                    md-is-locked-open="$mdMedia('gt-sm')" md-disable-backdrop md-whiteframe="2">
+        <md-content class="main-content">
             <md-toolbar>
                 <h1 class="md-toolbar-tools">Nautalius</h1>
             </md-toolbar>
             <md-content layout="column" layout-padding="">
-                <md-checkbox ng-model="showFiles">
-                    Show files
-                </md-checkbox>
+                <div class="controls">
+                    <md-checkbox ng-model="showFiles">
+                        Show files
+                    </md-checkbox>
+                    <br>
+                    <md-button>Add file</md-button>
+                    <md-button>Add directory</md-button>
+                </div>
                 <div ng-show="isInAddingMode">
                     <form name="entryForm" ng-submit="addNewEntry()">
                         <md-input-container>
@@ -37,33 +40,7 @@
                 </div>
                 <ntls-tree-view show-files="showFiles" root-entry="rootEntry"></ntls-tree-view>
             </md-content>
-        </md-sidenav>
-
-        <md-content class="main-content" flex>
-            <md-toolbar>
-                <div class="md-toolbar-tools">
-                    <md-button class="md-icon-button" ng-click="toggleSidebarLeft()" hide-gt-sm>
-                        <md-icon>menu</md-icon>
-                    </md-button>
-                    <h2>
-                        <span>{{showingDir.name}}</span>
-                    </h2>
-                    <span flex=""></span>
-                    <md-button class="md-icon-button" ng-click="showAddDirectoryForm()">
-                        <md-icon>create_new_folder</md-icon>
-                    </md-button>
-                    <md-button class="md-icon-button" ng-click="showAddFileForm()">
-                        <md-icon>note_add</md-icon>
-                    </md-button>
-                </div>
-            </md-toolbar>
-            <md-content class="overflowed">
-                <!--<ntls-content-view layout="column" layout-padding="" root-entry="showingDir"></ntls-content-view>-->
-                <ntls-tree-view layout="column" layout-padding="" show-files="true"
-                                root-entry="showingDir"></ntls-tree-view>
-            </md-content>
         </md-content>
-
     </section>
 </div>
 <!-- bower:js -->

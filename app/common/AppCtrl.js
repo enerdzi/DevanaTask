@@ -2,7 +2,6 @@ angular.module('Nautalius')
     .controller('AppCtrl', ['$scope', '$mdSidenav', 'EntryService', 'EntryModel', 'Events', 'StressTest',
         function ($scope, $mdSidenav, EntryService, EntryModel, Events, StressTest) {
             $scope.showFiles = true;
-            $scope.showingDir = EntryService.getRootEntry();
             $scope.rootEntry = EntryService.getRootEntry();
 
             $scope.toggleSidebarLeft = function () {
@@ -34,17 +33,10 @@ angular.module('Nautalius')
                 }
             });
 
-            $scope.$on(Events.SHOWING_DIR_CHANGE, function (e, newShowingDirectory) {
-                $scope.showingDir = newShowingDirectory;
-            });
-
             $scope.$on(Events.DIR_DELETED, function (e, deletedDirectory) {
                 if ($scope.activeDir && _.isEqual($scope.activeDir, deletedDirectory)) {
                     $scope.activeDir = EntryService.getRootEntry();
                     $scope.newEntry.parent = EntryService.getRootEntry();
-                }
-                if (_.isEqual($scope.showingDir, deletedDirectory)) {
-                    $scope.showingDir = EntryService.getRootEntry();
                 }
             });
 
