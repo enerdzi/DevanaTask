@@ -1,6 +1,9 @@
 var gulp = require('gulp'),
     inject = require('gulp-inject'),
+    uglify = require('gulp-uglify'),
     clean = require('gulp-clean'),
+    angularFilesort = require('gulp-angular-filesort'),
+    concat = require('gulp-concat'),
     bowerFiles = require('main-bower-files');
 
 var paths = {
@@ -24,6 +27,9 @@ gulp.task('build', ['build-index']);
 
 gulp.task('build-js', function () {
     return gulp.src(paths.srcJs)
+        .pipe(angularFilesort())
+        .pipe(concat('all.js'))
+        .pipe(uglify())
         .pipe(gulp.dest(paths.destJs));
 });
 
