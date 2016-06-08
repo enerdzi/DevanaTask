@@ -12,7 +12,6 @@ angular.module('Nautalius')
         };
 
         service.showPrompt = function (title, text, okButton, value) {
-            console.log($mdDialog.prompt());
             var confirm = $mdDialog.prompt()
                 .title(title)
                 .textContent(text)
