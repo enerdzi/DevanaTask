@@ -1,13 +1,9 @@
 angular.module('Nautalius')
-    .controller('AppCtrl', ['$scope', '$mdSidenav', 'EntryService', 'EntryModel', 'Events', 'StressTest',
-        function ($scope, $mdSidenav, EntryService, EntryModel, Events, StressTest) {
+    .controller('AppCtrl', ['$scope', 'EntryService', 'EntryModel', 'Events', 'StressTest',
+        function ($scope, EntryService, EntryModel, Events, StressTest) {
             $scope.showFiles = true;
             $scope.rootEntry = EntryService.getRootEntry();
-
-            $scope.toggleSidebarLeft = function () {
-                $mdSidenav('left').toggle();
-            };
-
+            
             $scope.showAddDirectoryForm = function () {
                 switchToAddingMode(true);
             };
@@ -43,7 +39,6 @@ angular.module('Nautalius')
             function switchToAddingMode(isDir) {
                 $scope.isInAddingMode = true;
                 $scope.activeDir = EntryService.getRootEntry();
-                $scope.toggleSidebarLeft();
                 $scope.newEntry = {
                     name: '',
                     isDir: isDir,

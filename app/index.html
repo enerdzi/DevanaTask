@@ -21,8 +21,8 @@
                         Show files
                     </md-checkbox>
                     <br>
-                    <md-button>Add file</md-button>
-                    <md-button>Add directory</md-button>
+                    <md-button ng-click="showAddFileForm()">Add file</md-button>
+                    <md-button ng-click="showAddDirectoryForm()">Add directory</md-button>
                 </div>
                 <div ng-show="isInAddingMode">
                     <form name="entryForm" ng-submit="addNewEntry()">
@@ -34,8 +34,11 @@
                             <label>Parent directory</label>
                             <input ng-disabled="true" ng-model="newEntry.parent.name">
                         </md-input-container>
-                        <md-button class="" ng-click="cancelAddingEntry()">Cancel</md-button>
-                        <md-button class="md-primary md-raised" type="submit">Add</md-button>
+                        <br>
+                        <md-input-container>
+                            <md-button class="" ng-click="cancelAddingEntry()">Cancel</md-button>
+                            <md-button class="md-primary md-raised" type="submit">Add</md-button>
+                        </md-input-container>
                     </form>
                 </div>
                 <ntls-tree-view show-files="showFiles" root-entry="rootEntry"></ntls-tree-view>
