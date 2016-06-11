@@ -43,15 +43,33 @@
     text-align: center;
     width: 200px;
     padding: 8px;
+    cursor: pointer;
 }
 
 .grid-entry-item:focus {
     outline: 1px solid #BBDEFB;
 }
 
-.grid-entry-item * {
+.grid-entry-item > * {
     display: block;
     text-align: center;
+}
+
+.actions {
+    opacity: 0;
+}
+
+.actions * {
+    cursor: pointer;
+}
+
+.grid-entry-item > p {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.grid-entry-item:hover .actions {
+    opacity: 1;
 }
 
 .entry-icon {

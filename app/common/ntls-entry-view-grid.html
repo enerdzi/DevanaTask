@@ -1,5 +1,10 @@
 <div class="grid-entry-item">
     <md-icon class="md-avatar-icon entry-icon" ng-if="entry.isDir" md-svg-icon="folder"></md-icon>
-    <md-icon class="md-avatar-icon entry-icon" ng-if="!entry.isDir" md-svg-icon="{{ iconsMap[entry.getExtension()] }}"></md-icon>
+    <md-icon class="md-avatar-icon entry-icon" ng-if="!entry.isDir"
+             md-svg-icon="{{ iconsMap[entry.getExtension()] }}"></md-icon>
     <p>{{ entry.name }}</p>
+    <div class="actions">
+        <md-icon ng-click="showRenamePrompt($event)">mode_edit</md-icon>
+        <md-icon ng-click="showDeleteConfirm($event)">delete</md-icon>
+    </div>
 </div>
