@@ -46,5 +46,8 @@ angular.module('Nautalius')
                 };
             }
 
-            StressTest.generateData($scope.rootEntry);
+            /*
+                To Stress test the app
+                StressTest.generateData($scope.rootEntry);
+             */
         }]);
