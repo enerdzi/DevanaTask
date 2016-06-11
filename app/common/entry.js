@@ -3,7 +3,6 @@ angular.module('Nautalius')
     .constant('MAX_ENTRY_NAME_LEN', 50)
     .factory('EntryService', ['EntryModel', 'MIN_ENTRY_NAME_LEN', 'MAX_ENTRY_NAME_LEN', function (EntryModel, MIN_ENTRY_NAME_LEN, MAX_ENTRY_NAME_LEN) {
         var service = {};
-
         var rootEntry = EntryModel.makeRoot();
 
         service.getRootEntry = function () {

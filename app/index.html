@@ -45,6 +45,9 @@
                     <md-button class="md-icon-button" ng-click="toggleSidebarLeft()" hide-gt-sm>
                         <md-icon>menu</md-icon>
                     </md-button>
+                    <md-button class="md-icon-button" ng-click="goUp()" ng-disabled="!showingDir.getParent()">
+                        <md-icon md-svg-icon="arrow-up-bold"></md-icon>
+                    </md-button>
                     <h2>
                         <span>{{showingDir.name}}</span>
                     </h2>

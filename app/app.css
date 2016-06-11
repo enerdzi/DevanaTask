@@ -39,11 +39,24 @@
     min-height: 24px;
 }
 
+.grid-entry-item {
+    text-align: center;
+    width: 200px;
+    padding: 8px;
+}
+
+.grid-entry-item:focus {
+    outline: 1px solid #BBDEFB;
+}
+
 .grid-entry-item * {
     display: block;
+    text-align: center;
 }
 
 .entry-icon {
-    font-size: 48px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: 8px;
 }
 

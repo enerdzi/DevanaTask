@@ -5,6 +5,12 @@ angular.module('Nautalius')
             $scope.showingDir = EntryService.getRootEntry();
             $scope.rootEntry = EntryService.getRootEntry();
 
+            $scope.goUp = function () {
+                if ($scope.showingDir.getParent()) {
+                    $scope.$emit(Events.SHOWING_DIR_CHANGE, $scope.showingDir.getParent());
+                }
+            };
+
             $scope.toggleSidebarLeft = function () {
                 $mdSidenav('left').toggle();
             };

@@ -9,6 +9,7 @@ angular.module('Nautalius')
                 }
             },
             restrict: 'E',
+            replace: true,
             scope: {
                 entry: '=',
                 view: '='

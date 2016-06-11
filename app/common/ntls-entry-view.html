@@ -1,8 +1,8 @@
 <md-list-item class="custom-list-item">
     <!-- Make Directive out of these icons -->
-    <md-icon class="md-avatar-icon icon-smaller-margin" ng-if="entry.isDir && view.isOpen">folder_open</md-icon>
-    <md-icon class="md-avatar-icon icon-smaller-margin" ng-if="entry.isDir && !view.isOpen">folder</md-icon>
-    <md-icon class="md-avatar-icon icon-smaller-margin" ng-if="!entry.isDir"
+    <md-icon class="icon-smaller-margin" ng-if="entry.isDir && view.isOpen">folder_open</md-icon>
+    <md-icon class="icon-smaller-margin" ng-if="entry.isDir && !view.isOpen">folder</md-icon>
+    <md-icon class="icon-smaller-margin" ng-if="!entry.isDir"
              md-svg-icon="{{ iconsMap[entry.getExtension()] }}"></md-icon>
     <p>{{ entry.name }} </p>
 
