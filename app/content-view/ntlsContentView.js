@@ -1,5 +1,5 @@
 angular.module('Nautalius')
-    .directive('ntlsContentView', ['EntryModel', function (EntryModel) {
+    .directive('ntlsContentView', ['Events', function (Events) {
         return {
             templateUrl: 'content-view/ntls-content-view.html',
             restrict: 'E',
@@ -7,9 +7,13 @@ angular.module('Nautalius')
                 rootEntry: '='
             },
             link: function (scope) {
-                scope.showDir = function () {
-                    if (scope.rootEntry.isDir) {
-                        scope.$emit('SHOWING_DIR_CHANGE', scope.rootEntry);
+                scope.view = {
+                    isOpen: false
+                };
+
+                scope.showDir = function (entry) {
+                    if (entry.isDir) {
+                        scope.$emit(Events.SHOWING_DIR_CHANGE, entry);
                     }
                 };
             }
