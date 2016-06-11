@@ -1,8 +1,13 @@
 angular.module('Nautalius')
     .directive('ntlsEntryView', ['Modals', 'EntryService', 'Events', function (Modals, EntryService, Events) {
         return {
-            templateUrl: 'common/ntls-entry-view.html',
-            replace: true,
+            templateUrl: function (elem, attrs) {
+                if (attrs.mode === 'list') {
+                    return 'common/ntls-entry-view.html';
+                } else {
+                    return 'common/ntls-entry-view-grid.html';
+                }
+            },
             restrict: 'E',
             scope: {
                 entry: '=',
@@ -30,7 +35,7 @@ angular.module('Nautalius')
                     $event.stopPropagation();
                     Modals.showRenameEntryPrompt(scope.entry.name, renameFailed).then(function (newName) {
                         if (_.isEmpty(newName) || !EntryService.renameEntry(scope.entry, newName)) {
-                            scope.showPrompt(true);
+                            scope.showRenamePrompt($event, true);
                         }
                     });
                 };

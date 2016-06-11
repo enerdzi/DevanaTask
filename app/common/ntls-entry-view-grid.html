@@ -1,0 +1,8 @@
+<md-grid-tile>
+    <div class="grid-entry-item">
+        <md-icon class="entry-icon" ng-if="entry.isDir">folder</md-icon>
+        <md-icon class="entry-icon" ng-if="!entry.isDir"
+                 md-svg-icon="{{ iconsMap[entry.getExtension()] }}"></md-icon>
+        <p>{{ entry.name }}</p>
+    </div>
+</md-grid-tile>

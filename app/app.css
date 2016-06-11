@@ -38,3 +38,12 @@
 .md-list-item-inner {
     min-height: 24px;
 }
+
+.grid-entry-item * {
+    display: block;
+}
+
+.entry-icon {
+    font-size: 48px;
+}
+
