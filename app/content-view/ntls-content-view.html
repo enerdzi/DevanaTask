@@ -1,4 +1,4 @@
-<md-grid-list md-cols="8" md-row-height="1:1" md-gutter="8px">
+<md-grid-list md-cols-xs="2" md-cols-sm="4" md-cols-md="6" md-cols-gt-md="8" md-row-height="1:1" md-gutter="8px">
     <md-grid-tile ng-repeat="entry in rootEntry.getDirectories()">
         <ntls-entry-view md-no-ink ng-dblclick="showDir(entry)" entry="entry" view="view" mode="grid"></ntls-entry-view>
     </md-grid-tile>
