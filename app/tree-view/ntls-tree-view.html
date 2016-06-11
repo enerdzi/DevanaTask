@@ -1,5 +1,5 @@
 <md-list class="md-dense" flex>
-    <ntls-entry-view ng-click="toggleOpen()" ng-dblclick="showDir()" entry="rootEntry" view="view" mode="list"></ntls-entry-view>
+    <ntls-entry-view ng-click="toggleOpen()" ng-dblclick="showDir($event)" entry="rootEntry" view="view" mode="list"></ntls-entry-view>
     <div ng-if="view.isOpen">
         <md-list-item class="list-item-no-right-padding"
                       ng-repeat="entry in rootEntry.getDirectories()">

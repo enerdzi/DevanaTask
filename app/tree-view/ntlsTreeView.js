@@ -20,7 +20,8 @@ angular.module('Nautalius')
                     }
                 };
 
-                scope.showDir = function () {
+                scope.showDir = function ($event) {
+                    $event.stopPropagation();
                     if (scope.rootEntry.isDir) {
                         scope.$emit(Events.SHOWING_DIR_CHANGE, scope.rootEntry);
                     }
